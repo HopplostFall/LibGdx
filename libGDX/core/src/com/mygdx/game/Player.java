@@ -28,6 +28,7 @@ public class Player {
 
     public void Update(ArrayList<Tile>walls)
     {
+        this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
         if(x != goToX)  //If not at goal position X
         {
@@ -81,6 +82,10 @@ public class Player {
             int diffY = yInput - y;
             goToX = (xInput+ x)-(Gdx.graphics.getWidth()/2);
             goToY = (((yInput - Gdx.graphics.getHeight()) * -1)+y) - (Gdx.graphics.getHeight()/2);
+            goToX = goToX/2;
+            goToX = goToX*2;
+            goToY = goToY/2;
+            goToY = goToY*2;
         }
 
 

@@ -34,7 +34,7 @@ public class MyGdxGame extends Game {
         cam.update();
 
 		img = new Texture("character.png");
-        player = new Player(100,100,img);
+        player = new Player(200,200,img);
         tileHandler = new TileHandler();
 
 
