@@ -25,9 +25,11 @@ public class Player {
         this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
     }
-
-
+<<<<<<< HEAD
+    public void Update()
+=======
     public void Update(int camX,int camY, ArrayList<Tile>walls)
+>>>>>>> origin/master
     {
 
         if(x != goToX)  //If not at goal position X
@@ -80,15 +82,8 @@ public class Player {
             int diffX = xInput - x;
             int yInput = Gdx.input.getY();
             int diffY = yInput - y;
-            goToX = (xInput+ x)-(Gdx.graphics.getWidth()/2) - texture.getWidth()/2;
-            goToY = (((yInput - Gdx.graphics.getHeight()) * -1)+y) - (Gdx.graphics.getHeight()/2) - texture.getHeight()/2;
-
-            goToX = goToX/2;
-            goToX = goToX*2;
-
-            goToY = goToY/2;
-            goToY = goToY*2;
-
+            goToX = (xInput+ x)-(Gdx.graphics.getWidth()/2);
+            goToY = (((yInput - Gdx.graphics.getHeight()) * -1)+y) - (Gdx.graphics.getHeight()/2);
         }
 
 
