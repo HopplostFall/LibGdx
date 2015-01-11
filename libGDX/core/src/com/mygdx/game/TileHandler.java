@@ -14,6 +14,9 @@ public class TileHandler {
 
     ArrayList<Tile> floors = new ArrayList();
     ArrayList<Tile> walls = new ArrayList();
+    ArrayList<Button> buttons = new ArrayList();
+    ArrayList<Door> doors = new ArrayList();
+
 
     public TileHandler()
     {
@@ -23,6 +26,7 @@ public class TileHandler {
         FileHandle handle = Gdx.files.internal("textFile/map.txt");
         String lines = handle.readString();
         byte[] bytes = handle.readBytes();
+
         for(int i = 0; i < bytes.length;i++)
         {
             if(bytes[i] == 'w')
@@ -37,6 +41,22 @@ public class TileHandler {
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
                 x++;
+            }else if(bytes[i] == 'b')
+            {
+                textureForPlacement = new Texture("Floor.jpg");
+                Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
+                floors.add(floor);
+                x++;
+                Button button = new Button(x*100,450-(100*y),bytes[i+1]);
+                buttons.add(button);
+            }else if(bytes[i] == 'd')
+            {
+                textureForPlacement = new Texture("Floor.jpg");
+                Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
+                floors.add(floor);
+                x++;
+                Door door = new Door(x*100,450-(100*y),bytes[i+1]);
+                doors.add(door);
             }
             else if(bytes[i] == 10)
             {
@@ -56,6 +76,14 @@ public class TileHandler {
         for(int i = 0; i < walls.size();i++)
         {
             walls.get(i).Draw(spriteBatch);
+        }
+        for(int i = 0; i < doors.size();i++)
+        {
+            doors.get(i).Draw(spriteBatch);
+        }
+        for(int i = 0; i < buttons.size();i++)
+        {
+            buttons.get(i).Draw(spriteBatch);
         }
     }
 }
