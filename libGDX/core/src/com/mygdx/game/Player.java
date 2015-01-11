@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.util.ArrayList;
+
 /**
  * Created by Kimpan on 2015-01-08.
  */
@@ -23,30 +25,59 @@ public class Player {
         this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
     }
+<<<<<<< HEAD
     public void Update()
+=======
+    public void Update(int camX,int camY, ArrayList<Tile>walls)
+>>>>>>> origin/master
     {
 
-        if(x != goToX)
+        if(x != goToX)  //If not at goal position X
         {
-            if(x > goToX)
+            if(x > goToX)  //If need to move left
             {
                 x -= 2;
-            }else
+
+                for(int i = 0; i < walls.size();i++)
+                {
+                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                        x += 2;
+                }
+
+            }else           //If need to move right
             {
                 x += 2;
+                for(int i = 0; i < walls.size();i++)
+                {
+                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                        x -= 2;
+                }
             }
         }
-        if(y != goToY)
+        if(y != goToY)   //If not at goal position Y
         {
-            if(y > goToY)
+            if(y > goToY) //If need to move down
             {
                 y -= 2;
-            }else
+                for(int i = 0; i < walls.size();i++)
+                {
+                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                        y += 2;
+                }
+            }else           //If need to move up
             {
                 y += 2;
+                for(int i = 0; i < walls.size();i++)
+                {
+                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                        x -= 2;
+                }
             }
         }
-        if(Gdx.input.isTouched()) {
+
+        //Handle input from player
+        if(Gdx.input.isTouched())
+        {
             int xInput = Gdx.input.getX();
             int diffX = xInput - x;
             int yInput = Gdx.input.getY();
