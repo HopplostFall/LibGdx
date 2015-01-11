@@ -41,8 +41,10 @@ public class Player {
                 for(int i = 0; i < walls.size();i++)
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle)))
+                    if (rectangle.overlaps((wallrectangle))) {
+                        goToX = x + 2;
                         x += 2;
+                    }
                 }
 
             }else           //If need to move right
@@ -51,8 +53,12 @@ public class Player {
                 for(int i = 0; i < walls.size();i++)
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle)))
+                    if (rectangle.overlaps((wallrectangle))) {
+                        goToX = x - 2;
                         x -= 2;
+                    }
+
+
                 }
             }
         }
@@ -64,9 +70,12 @@ public class Player {
                 for(int i = 0; i < walls.size();i++)
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle)))
+                    if (rectangle.overlaps((wallrectangle))) {
+                        goToY = y + 2;
                         y += 2;
-                }
+                    }
+
+                    }
             }else           //If need to move up
             {
                 y += 2;
@@ -74,10 +83,12 @@ public class Player {
                 {
 
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle)))
-
-                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                    if (rectangle.overlaps((wallrectangle))) {
+                        goToY = y - 2;
                         y -= 2;
+
+                    }
+
                 }
             }
         }
