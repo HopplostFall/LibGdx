@@ -47,13 +47,12 @@ public class MyGdxGame extends Game {
     }
     public void Update()
     {
-        player.Update((int)cam.position.x,(int)cam.position.y);
-
+        player.Update((int)cam.position.x,(int)cam.position.y, tileHandler.walls);
+        CamUpdate();
     }
 	@Override
 	public void render () {
         Update();
-        CamUpdate();
 
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
