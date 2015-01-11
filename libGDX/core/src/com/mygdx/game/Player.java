@@ -72,8 +72,11 @@ public class Player {
                 y += 2;
                 for(int i = 0; i < walls.size();i++)
                 {
+
                     Rectangle wallrectangle = walls.get(i).rectangle;
                     if (rectangle.overlaps((wallrectangle)))
+
+                    if (this.rectangle.contains((walls.get(i).rectangle)))
                         y -= 2;
                 }
             }
