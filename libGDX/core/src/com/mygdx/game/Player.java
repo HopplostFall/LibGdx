@@ -42,7 +42,6 @@ public class Player {
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
                     if (rectangle.overlaps((wallrectangle))) {
-                        goToX = x + 2;
                         x += 2;
                     }
                 }
@@ -54,7 +53,6 @@ public class Player {
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
                     if (rectangle.overlaps((wallrectangle))) {
-                        goToX = x - 2;
                         x -= 2;
                     }
 
@@ -71,7 +69,6 @@ public class Player {
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
                     if (rectangle.overlaps((wallrectangle))) {
-                        goToY = y + 2;
                         y += 2;
                     }
 
@@ -84,7 +81,6 @@ public class Player {
 
                     Rectangle wallrectangle = walls.get(i).rectangle;
                     if (rectangle.overlaps((wallrectangle))) {
-                        goToY = y - 2;
                         y -= 2;
 
                     }
