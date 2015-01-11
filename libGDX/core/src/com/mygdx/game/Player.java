@@ -25,11 +25,8 @@ public class Player {
         this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
     }
-<<<<<<< HEAD
-    public void Update()
-=======
-    public void Update(int camX,int camY, ArrayList<Tile>walls)
->>>>>>> origin/master
+
+    public void Update(ArrayList<Tile>walls)
     {
 
         if(x != goToX)  //If not at goal position X
