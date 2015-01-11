@@ -21,6 +21,8 @@ public class Player {
     {
         this.x = x;
         this.y = y;
+        goToY = y;
+        goToX = x;
         this.texture = texture;
         this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
@@ -28,7 +30,7 @@ public class Player {
 
     public void Update(ArrayList<Tile>walls)
     {
-        this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
+        rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
         if(x != goToX)  //If not at goal position X
         {
@@ -38,7 +40,8 @@ public class Player {
 
                 for(int i = 0; i < walls.size();i++)
                 {
-                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                    Rectangle wallrectangle = walls.get(i).rectangle;
+                    if (rectangle.overlaps((wallrectangle)))
                         x += 2;
                 }
 
@@ -47,7 +50,8 @@ public class Player {
                 x += 2;
                 for(int i = 0; i < walls.size();i++)
                 {
-                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                    Rectangle wallrectangle = walls.get(i).rectangle;
+                    if (rectangle.overlaps((wallrectangle)))
                         x -= 2;
                 }
             }
@@ -59,7 +63,8 @@ public class Player {
                 y -= 2;
                 for(int i = 0; i < walls.size();i++)
                 {
-                    if (this.rectangle.contains((walls.get(i).rectangle)))
+                    Rectangle wallrectangle = walls.get(i).rectangle;
+                    if (rectangle.overlaps((wallrectangle)))
                         y += 2;
                 }
             }else           //If need to move up
@@ -67,8 +72,9 @@ public class Player {
                 y += 2;
                 for(int i = 0; i < walls.size();i++)
                 {
-                    if (this.rectangle.contains((walls.get(i).rectangle)))
-                        x -= 2;
+                    Rectangle wallrectangle = walls.get(i).rectangle;
+                    if (rectangle.overlaps((wallrectangle)))
+                        y -= 2;
                 }
             }
         }
