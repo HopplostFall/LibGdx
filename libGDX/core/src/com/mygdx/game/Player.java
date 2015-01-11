@@ -47,8 +47,10 @@ public class Player {
             }
         }
         if(Gdx.input.isTouched()) {
-            goToX = (Gdx.input.getX() + x);
-            goToY = (Gdx.input.getY() - Gdx.graphics.getHeight()) * -1;
+            int xInput = Gdx.input.getX();
+            int yInput = Gdx.input.getY();
+            goToX = (xInput+ x);
+            goToY = (yInput - Gdx.graphics.getHeight()) * -1;
         }
 
 
