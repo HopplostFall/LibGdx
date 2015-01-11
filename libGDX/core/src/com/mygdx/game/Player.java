@@ -48,8 +48,10 @@ public class Player {
         }
         if(Gdx.input.isTouched()) {
             int xInput = Gdx.input.getX();
+            int diffX = xInput - x;
             int yInput = Gdx.input.getY();
-            goToX = (xInput+ x);
+            int diffY = yInput - y;
+            goToX = (xInput + (x - diffX));
             goToY = (yInput - Gdx.graphics.getHeight()) * -1;
         }
 
