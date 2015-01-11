@@ -47,13 +47,9 @@ public class MyGdxGame extends Game {
     }
     public void Update()
     {
-<<<<<<< HEAD
-        player.Update();
 
-=======
-        player.Update((int)cam.position.x,(int)cam.position.y, tileHandler.walls);
+        player.Update(tileHandler.walls);
         CamUpdate();
->>>>>>> origin/master
     }
 	@Override
 	public void render () {
