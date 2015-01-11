@@ -17,7 +17,6 @@ public class MyGdxGame extends Game {
 	Texture img;
     Player player;
     Batch batch;
-    ButtonHandler buttonHandler;
     Button button;
     TileHandler tileHandler;
     OrthographicCamera cam;
@@ -48,7 +47,7 @@ public class MyGdxGame extends Game {
     public void Update()
     {
 
-        player.Update(tileHandler.walls);
+        player.Update(tileHandler.walls,tileHandler.doors,tileHandler.buttons);
         CamUpdate();
     }
 	@Override

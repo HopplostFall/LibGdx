@@ -28,22 +28,31 @@ public class Player {
 
     }
 
-    public void Update(ArrayList<Tile>walls)
+    public void Update(ArrayList<Tile>walls,ArrayList<Door>doors,ArrayList<Button>buttons)
     {
         rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
         if(x != goToX)  //If not at goal position X
         {
             Boolean collisionFound = false;
+
             if(x > goToX)  //If need to move left
             {
+                Rectangle tempPlayer = new Rectangle(x -5 ,y,rectangle.width,rectangle.height);
 
                 for(int i = 0; i < walls.size();i++)
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    Rectangle tempPlayer = new Rectangle(x -5 ,y,rectangle.width,rectangle.height);
 
                     if (tempPlayer.overlaps((wallrectangle))) {
+                        collisionFound = true;
+                        break;
+                    }
+                }
+                for (int i = 0; i < doors.size();i++) {
+                    Rectangle doorrectangle = doors.get(i).rectangle;
+
+                    if (tempPlayer.overlaps((doorrectangle))) {
                         collisionFound = true;
                         break;
                     }
@@ -55,17 +64,25 @@ public class Player {
 
             }else           //If need to move right
             {
-
+                Rectangle tempPlayer = new Rectangle(x +5 ,y,rectangle.width,rectangle.height);
                     for(int i = 0; i < walls.size();i++)
                     {
                         Rectangle wallrectangle = walls.get(i).rectangle;
-                        Rectangle tempPlayer = new Rectangle(x +5 ,y,rectangle.width,rectangle.height);
 
                         if (tempPlayer.overlaps((wallrectangle))) {
                             collisionFound = true;
                             break;
                         }
                     }
+                    for (int i = 0; i < doors.size();i++) {
+                    Rectangle doorrectangle = doors.get(i).rectangle;
+
+
+                    if (tempPlayer.overlaps((doorrectangle))) {
+                        collisionFound = true;
+                        break;
+                    }
+                }
                     if(!collisionFound)
                     {
                         x+=2;
@@ -77,38 +94,34 @@ public class Player {
         {
             Boolean collisionFound = false;
 
-            if(y > goToY) //If need to move down
+            if (y > goToY) //If need to move down
             {
 
-                for(int i = 0; i < walls.size();i++)
-                {
+                for (int i = 0; i < walls.size(); i++) {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    Rectangle tempPlayer = new Rectangle(x ,y-5,rectangle.width,rectangle.height);
+                    Rectangle tempPlayer = new Rectangle(x, y - 5, rectangle.width, rectangle.height);
 
                     if (tempPlayer.overlaps((wallrectangle))) {
                         collisionFound = true;
                         break;
                     }
                 }
-                if(!collisionFound)
-                {
-                    y-=2;
+                if (!collisionFound) {
+                    y -= 2;
                 }
-            }else           //If need to move up
+            } else           //If need to move up
             {
-                for(int i = 0; i < walls.size();i++)
-                {
+                for (int i = 0; i < walls.size(); i++) {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    Rectangle tempPlayer = new Rectangle(x ,y+5,rectangle.width,rectangle.height);
+                    Rectangle tempPlayer = new Rectangle(x, y + 5, rectangle.width, rectangle.height);
 
                     if (tempPlayer.overlaps((wallrectangle))) {
                         collisionFound = true;
                         break;
                     }
                 }
-                if(!collisionFound)
-                {
-                    y+=2;
+                if (!collisionFound) {
+                    y += 2;
                 }
             }
         }
@@ -128,7 +141,16 @@ public class Player {
             goToY = goToY*2;
         }
 
-
+            for (int i = 0; i < buttons.size();i++)
+            {
+                Rectangle buttonRectangle = buttons.get(i).rectangle;
+                if (rectangle.overlaps((buttonRectangle))) {
+                    buttons.get(i).ButtonPressed();
+                }else
+                {
+                    buttons.get(i).ButtonReleased();
+                }
+            }
 
 
 
