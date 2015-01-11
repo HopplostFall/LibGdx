@@ -47,7 +47,7 @@ public class MyGdxGame extends Game {
     }
     public void Update()
     {
-        player.Update((int)cam.position.x,(int)cam.position.y);
+        player.Update();
 
     }
 	@Override

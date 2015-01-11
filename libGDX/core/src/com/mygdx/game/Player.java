@@ -20,11 +20,11 @@ public class Player {
         this.x = x;
         this.y = y;
         this.texture = texture;
+        this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
     }
-    public void Update(int camX,int camY)
+    public void Update()
     {
-        this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
         if(x != goToX)
         {
@@ -51,8 +51,8 @@ public class Player {
             int diffX = xInput - x;
             int yInput = Gdx.input.getY();
             int diffY = yInput - y;
-            goToX = (xInput + (x - diffX));
-            goToY = (yInput - Gdx.graphics.getHeight()) * -1;
+            goToX = (xInput+ x)-(Gdx.graphics.getWidth()/2);
+            goToY = (((yInput - Gdx.graphics.getHeight()) * -1)+y) - (Gdx.graphics.getHeight()/2);
         }
 
 
