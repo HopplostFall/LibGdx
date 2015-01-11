@@ -20,11 +20,11 @@ public class Player {
         this.x = x;
         this.y = y;
         this.texture = texture;
-        this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
     }
     public void Update(int camX,int camY)
     {
+        this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
         if(x != goToX)
         {
