@@ -68,7 +68,7 @@ public class Player {
                 for(int i = 0; i < walls.size();i++)
                 {
                     if (this.rectangle.contains((walls.get(i).rectangle)))
-                        x -= 2;
+                        y -= 2;
                 }
             }
         }
