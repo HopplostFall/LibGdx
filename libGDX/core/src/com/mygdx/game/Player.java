@@ -34,57 +34,81 @@ public class Player {
 
         if(x != goToX)  //If not at goal position X
         {
+            Boolean collisionFound = false;
             if(x > goToX)  //If need to move left
             {
-                x -= 2;
 
                 for(int i = 0; i < walls.size();i++)
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle))) {
-                        x += 2;
+                    Rectangle tempPlayer = new Rectangle(x -5 ,y,rectangle.width,rectangle.height);
+
+                    if (tempPlayer.overlaps((wallrectangle))) {
+                        collisionFound = true;
+                        break;
                     }
+                }
+                if(!collisionFound)
+                {
+                    x-=2;
                 }
 
             }else           //If need to move right
             {
-                x += 2;
-                for(int i = 0; i < walls.size();i++)
-                {
-                    Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle))) {
-                        x -= 2;
+
+                    for(int i = 0; i < walls.size();i++)
+                    {
+                        Rectangle wallrectangle = walls.get(i).rectangle;
+                        Rectangle tempPlayer = new Rectangle(x +5 ,y,rectangle.width,rectangle.height);
+
+                        if (tempPlayer.overlaps((wallrectangle))) {
+                            collisionFound = true;
+                            break;
+                        }
+                    }
+                    if(!collisionFound)
+                    {
+                        x+=2;
                     }
 
-
-                }
             }
         }
         if(y != goToY)   //If not at goal position Y
         {
+            Boolean collisionFound = false;
+
             if(y > goToY) //If need to move down
             {
-                y -= 2;
+
                 for(int i = 0; i < walls.size();i++)
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle))) {
-                        y += 2;
-                    }
+                    Rectangle tempPlayer = new Rectangle(x ,y-5,rectangle.width,rectangle.height);
 
+                    if (tempPlayer.overlaps((wallrectangle))) {
+                        collisionFound = true;
+                        break;
                     }
+                }
+                if(!collisionFound)
+                {
+                    y-=2;
+                }
             }else           //If need to move up
             {
-                y += 2;
                 for(int i = 0; i < walls.size();i++)
                 {
-
                     Rectangle wallrectangle = walls.get(i).rectangle;
-                    if (rectangle.overlaps((wallrectangle))) {
-                        y -= 2;
+                    Rectangle tempPlayer = new Rectangle(x ,y+5,rectangle.width,rectangle.height);
 
+                    if (tempPlayer.overlaps((wallrectangle))) {
+                        collisionFound = true;
+                        break;
                     }
-
+                }
+                if(!collisionFound)
+                {
+                    y+=2;
                 }
             }
         }
