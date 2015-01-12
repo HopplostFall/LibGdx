@@ -46,17 +46,30 @@ public class TileHandler {
                 textureForPlacement = new Texture("Floor.jpg");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
-                x++;
                 Button button = new Button(x*100,450-(100*y),bytes[i+1]);
                 buttons.add(button);
+                x++;
+
+
             }else if(bytes[i] == 'd')
             {
                 textureForPlacement = new Texture("Floor.jpg");
+                Texture texture = new Texture("Door.png");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
+                if(bytes[i-1] == 'f') {
+                    texture = new Texture("Door.png");
+                    Door door = new Door((x * 100)+((textureForPlacement.getWidth()/2)-texture.getWidth()/2), 450 - (100 * y), bytes[i + 1], texture);
+                    doors.add(door);
+                }else if(bytes[i-1] == 'w')
+                {
+                    texture = new Texture("DoorHorizontal.png");
+                    Door door = new Door(x * 100, (450 - (100 * y))+((textureForPlacement.getHeight()/2)-texture.getHeight()/2), bytes[i + 1], texture);
+                    doors.add(door);
+                }
+
                 x++;
-                Door door = new Door(x*100,450-(100*y),bytes[i+1]);
-                doors.add(door);
+
             }
             else if(bytes[i] == 10)
             {

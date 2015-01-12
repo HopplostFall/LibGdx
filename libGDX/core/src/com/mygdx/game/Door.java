@@ -16,9 +16,9 @@ public class Door {
         int srcWidth,srcHeight;
         Rectangle rectangle;
 
-        public Door(int x,int y, int ID)
+        public Door(int x,int y, int ID, Texture texture)
         {
-            this.texture =  new Texture("Door.png");
+            this.texture =  texture;
             this.x = x;
             this.y = y;
             this.ID = ID;
