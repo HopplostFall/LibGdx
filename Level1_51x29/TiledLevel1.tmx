@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="50" tileheight="50">
+ <tileset firstgid="1" name="Färger" tilewidth="50" tileheight="50">
+  <image source="../kartsaker.png" width="854" height="257"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztV9FqwzAM9PoJcwLbw6CwBNZAoOneB/v/n9oMNjNCUmRHSb2ig8NJraS+nmSrJ+fcqYKDMGYQxkrfyfGtgkNBXElszVqO1jEp65jvpKNFP8YddNzuoKNlPz520tEBLnHskTnp9389iB/5b36kjouyDphXA0IPxlscexAn1fGeEd7n7Jj1+Ox+QWIwPzyxpr7St9wPTj9XH9SauLzaQweWO1DTo+hYsmtYT59CHS/E+1r2I+1Za37A80RDB5xrIa96IbE9iGI6D8Nzi5OdkUmHj8+M8Tpfw/mXz5HwO8P8vMK0l0q94+Y8Q+k5OCOfcbUX+A24VUdJXlE9FqaDe/cU1z6Ba07HWVFHiR9r+aLhh+T8TDpC7l/j2Lm/eqDq4urwPhZjqiMptfyg/h9he5ikz9bqd0t1UGvDdFDn5RYdHNd0vBb4kfcL2n7UMukYATXyKvU5R+qQxB5RH1t0PAljJXsTtV+1pIPr01rwg+tZ/guDDoPBYDAYDAaDwWAwGAwGLfwAryab6w==
+  </data>
+ </layer>
+</map>

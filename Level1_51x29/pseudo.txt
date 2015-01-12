@@ -1,0 +1,4 @@
+Client -> Server:  Btn_1_pressed
+Server -> Clients:  Btn_1_openDoors
+Client: Loop Btn_1_DoorList_open
+
