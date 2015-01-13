@@ -83,7 +83,7 @@ public class TileHandler {
         }
     }
 
-    private static final int bytesToInt(byte[] bajts, int startpos)
+    private static int bytesToInt(byte[] bajts, int startpos)
     {
         byte[] tmp = {bajts[startpos], bajts[startpos+1]};
         String nummerStr = new String(tmp);
