@@ -44,20 +44,18 @@ public class MyGdxGame extends Game {
     }
     public void Update()
     {
-<<<<<<< HEAD
+
         tileHandler.updatePlayer();
-=======
-        player.Update(tileHandler.walls,tileHandler.doors,tileHandler.buttons);
->>>>>>> origin/master
+
         CamUpdate();
     }
 	@Override
 	public void render () {
-        Update();
+        if(tileHandler.player != null) {
+            Update();
         Gdx.graphics.setDisplayMode(WidthToUse, HeightToUse, true);
         Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if(tileHandler.player != null) {
             spritebatch.setProjectionMatrix(cam.combined);
             spritebatch.begin();
             tileHandler.Draw(spritebatch);
@@ -67,13 +65,8 @@ public class MyGdxGame extends Game {
 	}
     public void CamUpdate()
     {
-<<<<<<< HEAD
-        cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(tileHandler.player.x, tileHandler.player.y, 0);
-=======
         cam.setToOrtho(false, WidthToUse, HeightToUse);
-        cam.position.set(player.x, player.y, 0);
->>>>>>> origin/master
+        cam.position.set(tileHandler.player.x, tileHandler.player.y, 0);
         cam.update();
     }
 
