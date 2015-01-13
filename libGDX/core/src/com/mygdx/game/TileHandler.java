@@ -49,7 +49,8 @@ public class TileHandler {
                 textureForPlacement = new Texture("Floor.jpg");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
-                Button button = new Button(x*100,450-(100*y),bytes[i+1]);
+                int btnNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
+                Button button = new Button(x*100,450-(100*y),btnNumber);
                 buttons.add(button);
                 x++;
 
@@ -63,53 +64,31 @@ public class TileHandler {
                 int doorNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
                 if(bytes[i-1] == 'f') {
                     texture = new Texture("Door.png");
-                    Door door = new Door((x * 100)+((textureForPlacement.getWidth()/2)-texture.getWidth()/2), 450 - (100 * y), bytes[i + 1], texture);
+                    Door door = new Door((x * 100)+((textureForPlacement.getWidth()/2)-texture.getWidth()/2), 450 - (100 * y), doorNumber, texture);
                     doors.add(door);
                 }else if(bytes[i-1] == 'w')
                 {
                     texture = new Texture("DoorHorizontal.png");
-                    Door door = new Door(x * 100, (450 - (100 * y))+((textureForPlacement.getHeight()/2)-texture.getHeight()/2), bytes[i + 1], texture);
+                    Door door = new Door(x * 100, (450 - (100 * y))+((textureForPlacement.getHeight()/2)-texture.getHeight()/2), doorNumber, texture);
                     doors.add(door);
                 }
 
                 x++;
-
             }
             else if(bytes[i] == 10)
             {
                 y++;
                 x = 0;
             }
-
         }
     }
 
     private static final int bytesToInt(byte[] bajts, int startpos)
     {
         byte[] tmp = {bajts[startpos], bajts[startpos+1]};
-        String nummer = new String(tmp);
-        /*return ByteBuffer.wrap(tmp).getInt();*/
-
-        /*ByteBuffer buffer = ByteBuffer.wrap(tmp);
-        int number = buffer.getInt();
-        return number;*/
-        int hej = (int) ByteBuffer.wrap(tmp).getShort();
-        int test = (int)bajts[startpos] + (int)bajts[startpos+1];
-        int result = Integer.parseInt(nummer);
-        int number = 0;
-
-        number |= (int)bajts[startpos] & 0xFF;
-        number <<= 8;
-        number |= (int)bajts[startpos+1] & 0xFF;
-        return number;
-        //http://blog.oscarliang.net/what-s-the-use-of-and-0xff-in-programming-c-plus-p/
-
-        /*
-        for (int i = startpos; i < startpos+1; i++)
-        {
-            number = ( number << 8) + (int)bajts[i];
-        }
-        return number;*/
+        String nummerStr = new String(tmp);
+        int result = Integer.parseInt(nummerStr);
+        return result;
     }
 
     public void Draw(SpriteBatch spriteBatch)
