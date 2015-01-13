@@ -30,8 +30,16 @@ public class Door {
         public void Draw(SpriteBatch spriteBatch)
         {
 
-                spriteBatch.draw(texture, x, y,0,0,srcWidth,srcHeight);
+          spriteBatch.draw(texture, x, y,0,0,srcWidth,srcHeight);
 
+        }
+        public void OpenDoor()
+        {
+            this.rectangle = new Rectangle(x,y,0,0);
+        }
+        public void CloseDoor()
+        {
+            this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
         }
 
 

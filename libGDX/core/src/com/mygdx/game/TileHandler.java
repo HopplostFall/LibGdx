@@ -19,9 +19,11 @@ public class TileHandler {
     ArrayList<Tile> walls = new ArrayList();
     ArrayList<Button> buttons = new ArrayList();
     ArrayList<Door> doors = new ArrayList();
+    Thread newPlayersThread;
+    Connect connect;
 
 
-    public TileHandler()
+    public TileHandler(Connect connect)
     {
         int y = 0;
         int x = 0;
@@ -29,6 +31,10 @@ public class TileHandler {
         FileHandle handle = Gdx.files.internal("textFile/map.txt");
         String lines = handle.readString();
         byte[] bytes = handle.readBytes();
+        this.connect = connect;
+        newPlayersThread = new Thread(new Listen());
+        newPlayersThread.setName("Listen");
+        newPlayersThread.start();
 
         for(int i = 0; i < bytes.length;i++)
         {
@@ -67,7 +73,7 @@ public class TileHandler {
                     }
                 }
 
-                Button button = new Button(x*100,450-(100*y),btnNumber, linkedDoors);
+                Button button = new Button(x*100,450-(100*y),btnNumber, linkedDoors,connect);
                 buttons.add(button);
                 x++;
 
@@ -146,5 +152,57 @@ public class TileHandler {
             }
         }
         return false;
+    }
+    class Listen implements Runnable
+    {
+        @Override
+        public void run()
+        {
+            while(true)
+            {
+            String temp = connect.ListenForMessage();
+            if(temp.contains("Welcome to this Server, Your ID is: "))
+            {
+                MyGdxGame.myID =  Integer.parseInt(temp.split(": ")[1]);
+            }
+            else if(temp.contains("Pressed"))
+            {
+                int IDButton = Integer.parseInt(temp.split(":")[0]);
+                Button button = null;
+                for(int i = 0; i < buttons.size();i++)
+                {
+                    if(buttons.get(i).ID == IDButton)
+                    {
+                        button = buttons.get(i);
+                    }
+                }
+                for(int i = 0; i < doors.size();i++)
+                {
+                    for(int b = 0; b < button.linkList.size();b++)
+                    {
+                        if(doors.get(i).ID == button.linkList.get(b))
+                        {
+                            doors.get(i).OpenDoor();
+                        }
+                    }
+                }
+            }else if(temp.contains("Released")) {
+                int IDButton = Integer.parseInt(temp.split(":")[0]);
+                Button button = null;
+                for (int i = 0; i < buttons.size(); i++) {
+                    if (buttons.get(i).ID == IDButton) {
+                        button = buttons.get(i);
+                    }
+                }
+                for (int i = 0; i < doors.size(); i++) {
+                    for (int b = 0; b < button.linkList.size(); b++) {
+                        if (doors.get(i).ID == button.linkList.get(b)) {
+                            doors.get(i).CloseDoor();
+                        }
+                    }
+                }
+            }
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.Button;
-
+import java.io.IOException;
 
 
 public class MyGdxGame extends Game {
@@ -20,12 +20,19 @@ public class MyGdxGame extends Game {
     Button button;
     TileHandler tileHandler;
     OrthographicCamera cam;
+    Connect connect;
+    public static int myID;
 
 
 
 	@Override
 	public void create () {
+        try {
+            connect = new Connect();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         spritebatch = new SpriteBatch();
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -34,7 +41,7 @@ public class MyGdxGame extends Game {
 
 		img = new Texture("character.png");
         player = new Player(200,200,img);
-        tileHandler = new TileHandler();
+        tileHandler = new TileHandler(connect);
 
 
 
@@ -69,4 +76,5 @@ public class MyGdxGame extends Game {
         cam.position.set(player.x, player.y, 0);
         cam.update();
     }
+
 }
