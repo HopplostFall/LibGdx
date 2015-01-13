@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.Button;
-
+import java.awt.Rectangle;
 
 
 public class MyGdxGame extends Game {
@@ -21,14 +21,16 @@ public class MyGdxGame extends Game {
     TileHandler tileHandler;
     OrthographicCamera cam;
 
-
+    public static final int HeightToUse = 480;
+    public static final int WidthToUse = 640;
+    public static final float AspectRatio = (float)WidthToUse/(float)HeightToUse;
 
 	@Override
 	public void create () {
 
         spritebatch = new SpriteBatch();
-        cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam = new OrthographicCamera(WidthToUse, HeightToUse);
+        cam.setToOrtho(false, WidthToUse, HeightToUse);
         cam.position.set(0, 0, 0);
         cam.update();
 
@@ -36,25 +38,17 @@ public class MyGdxGame extends Game {
         player = new Player(200,200,img);
         tileHandler = new TileHandler();
 
-
-
-
-
-
-
-
     }
     public void Update()
     {
-
         player.Update(tileHandler.walls,tileHandler.doors,tileHandler.buttons);
         CamUpdate();
     }
 	@Override
 	public void render () {
         Update();
-
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.graphics.setDisplayMode(WidthToUse, HeightToUse, true);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spritebatch.setProjectionMatrix(cam.combined);
         spritebatch.begin();
@@ -65,8 +59,9 @@ public class MyGdxGame extends Game {
 	}
     public void CamUpdate()
     {
-        cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam.setToOrtho(false, WidthToUse, HeightToUse);
         cam.position.set(player.x, player.y, 0);
         cam.update();
     }
 }
+
