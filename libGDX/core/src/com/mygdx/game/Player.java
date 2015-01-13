@@ -40,6 +40,7 @@ public class Player {
             {
                 Rectangle tempPlayer = new Rectangle(x -5 ,y,rectangle.width,rectangle.height);
 
+                //Check playercollissions against Walls
                 for(int i = 0; i < walls.size();i++)
                 {
                     Rectangle wallrectangle = walls.get(i).rectangle;
@@ -49,6 +50,7 @@ public class Player {
                         break;
                     }
                 }
+                //Check playercollissions against Doors
                 for (int i = 0; i < doors.size();i++) {
                     Rectangle doorrectangle = doors.get(i).rectangle;
 
@@ -65,7 +67,8 @@ public class Player {
             }else           //If need to move right
             {
                 Rectangle tempPlayer = new Rectangle(x +5 ,y,rectangle.width,rectangle.height);
-                    for(int i = 0; i < walls.size();i++)
+                //Check playercollissions against Walls
+                for(int i = 0; i < walls.size();i++)
                     {
                         Rectangle wallrectangle = walls.get(i).rectangle;
 
@@ -74,6 +77,7 @@ public class Player {
                             break;
                         }
                     }
+                //Check playercollissions against Doors
                     for (int i = 0; i < doors.size();i++) {
                     Rectangle doorrectangle = doors.get(i).rectangle;
 
@@ -98,6 +102,7 @@ public class Player {
             {
                 Rectangle tempPlayer = new Rectangle(x, y - 5, rectangle.width, rectangle.height);
 
+                //Check playercollissions against Walls
                 for (int i = 0; i < walls.size(); i++) {
                     Rectangle wallrectangle = walls.get(i).rectangle;
 
@@ -106,6 +111,7 @@ public class Player {
                         break;
                     }
                 }
+                //Check playercollissions against Doors
                 for (int i = 0; i < doors.size();i++) {
                     Rectangle doorrectangle = doors.get(i).rectangle;
 
@@ -121,6 +127,7 @@ public class Player {
             } else           //If need to move up
             {
                 Rectangle tempPlayer = new Rectangle(x, y + 5, rectangle.width, rectangle.height);
+                //Check playercollissions against Walls
                 for (int i = 0; i < walls.size(); i++) {
                     Rectangle wallrectangle = walls.get(i).rectangle;
 
@@ -130,6 +137,7 @@ public class Player {
                         break;
                     }
                 }
+                //Check playercollissions against Doors
                 for (int i = 0; i < doors.size();i++) {
                     Rectangle doorrectangle = doors.get(i).rectangle;
 

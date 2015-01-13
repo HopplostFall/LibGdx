@@ -5,6 +5,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 /**
@@ -29,19 +31,19 @@ public class TileHandler {
 
         for(int i = 0; i < bytes.length;i++)
         {
-            if(bytes[i] == 'w')
+            if(bytes[i] == 'w') //Wall
             {
                 textureForPlacement = new Texture("wall.jpg");
                 Tile wall = new Tile(x*100,450-(100*y),textureForPlacement);
                 walls.add(wall);
                 x++;
-            }else if(bytes[i] == 'f')
+            }else if(bytes[i] == 'f') //Floor
             {
                 textureForPlacement = new Texture("Floor.jpg");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
                 x++;
-            }else if(bytes[i] == 'b')
+            }else if(bytes[i] == 'b') //Button
             {
                 textureForPlacement = new Texture("Floor.jpg");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
@@ -51,12 +53,13 @@ public class TileHandler {
                 x++;
 
 
-            }else if(bytes[i] == 'd')
+            }else if(bytes[i] == 'd') //Door
             {
                 textureForPlacement = new Texture("Floor.jpg");
                 Texture texture = new Texture("Door.png");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
+                int doorNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
                 if(bytes[i-1] == 'f') {
                     texture = new Texture("Door.png");
                     Door door = new Door((x * 100)+((textureForPlacement.getWidth()/2)-texture.getWidth()/2), 450 - (100 * y), bytes[i + 1], texture);
@@ -78,6 +81,23 @@ public class TileHandler {
             }
 
         }
+    }
+
+    private static int bytesToInt(byte[] bajts, int startpos)
+    {
+        /*byte[] tmp = {(bajts[startpos], bajts[startpos+1]};
+        return ByteBuffer.wrap(tmp).getInt();*/
+
+        /*ByteBuffer buffer = ByteBuffer.wrap(tmp);
+        int number = buffer.getInt();
+        return number;*/
+
+        int number = 0;
+        for (int i = startpos; i < startpos+1; i++)
+        {
+            number = ( number << 8) + (int)bajts[i];
+        }
+        return number;
     }
 
     public void Draw(SpriteBatch spriteBatch)
