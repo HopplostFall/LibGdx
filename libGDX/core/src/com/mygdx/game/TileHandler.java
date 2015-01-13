@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 /**
@@ -83,21 +84,32 @@ public class TileHandler {
         }
     }
 
-    private static int bytesToInt(byte[] bajts, int startpos)
+    private static final int bytesToInt(byte[] bajts, int startpos)
     {
-        /*byte[] tmp = {(bajts[startpos], bajts[startpos+1]};
-        return ByteBuffer.wrap(tmp).getInt();*/
+        byte[] tmp = {bajts[startpos], bajts[startpos+1]};
+        String nummer = new String(tmp);
+        /*return ByteBuffer.wrap(tmp).getInt();*/
 
         /*ByteBuffer buffer = ByteBuffer.wrap(tmp);
         int number = buffer.getInt();
         return number;*/
-
+        int hej = (int) ByteBuffer.wrap(tmp).getShort();
+        int test = (int)bajts[startpos] + (int)bajts[startpos+1];
+        int result = Integer.parseInt(nummer);
         int number = 0;
+
+        number |= (int)bajts[startpos] & 0xFF;
+        number <<= 8;
+        number |= (int)bajts[startpos+1] & 0xFF;
+        return number;
+        //http://blog.oscarliang.net/what-s-the-use-of-and-0xff-in-programming-c-plus-p/
+
+        /*
         for (int i = startpos; i < startpos+1; i++)
         {
             number = ( number << 8) + (int)bajts[i];
         }
-        return number;
+        return number;*/
     }
 
     public void Draw(SpriteBatch spriteBatch)
