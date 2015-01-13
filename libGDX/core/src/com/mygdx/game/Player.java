@@ -98,57 +98,40 @@ public class Player {
         {
             Boolean collisionFound = false;
 
-            if (y > goToY) //If need to move down
+            rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
+            if(x != goToX)  //If not at goal position X
             {
-                Rectangle tempPlayer = new Rectangle(x, y - 5, rectangle.width, rectangle.height);
 
-                //Check playercollissions against Walls
-                for (int i = 0; i < walls.size(); i++) {
-                    Rectangle wallrectangle = walls.get(i).rectangle;
-
-                    if (tempPlayer.overlaps((wallrectangle))) {
-                        collisionFound = true;
-                        break;
+                if(x > goToX)  //If need to move left
+                {
+                    Rectangle tempPlayer = new Rectangle(x -5 ,y,rectangle.width,rectangle.height);
+                    if(!CheckCollision(tempPlayer,doors,walls)){
+                        x-=2;
+                    }
+                }else           //If need to move right
+                {
+                    Rectangle tempPlayer = new Rectangle(x +5 ,y,rectangle.width,rectangle.height);
+                    if(!CheckCollision(tempPlayer,doors,walls))
+                    {
+                        x+=2;
                     }
                 }
-                //Check playercollissions against Doors
-                for (int i = 0; i < doors.size();i++) {
-                    Rectangle doorrectangle = doors.get(i).rectangle;
-
-
-                    if (tempPlayer.overlaps((doorrectangle))) {
-                        collisionFound = true;
-                        break;
-                    }
-                }
-                if (!collisionFound) {
-                    y -= 2;
-                }
-            } else           //If need to move up
+            }
+            if(y != goToY)   //If not at goal position Y
             {
-                Rectangle tempPlayer = new Rectangle(x, y + 5, rectangle.width, rectangle.height);
-                //Check playercollissions against Walls
-                for (int i = 0; i < walls.size(); i++) {
-                    Rectangle wallrectangle = walls.get(i).rectangle;
-
-
-                    if (tempPlayer.overlaps((wallrectangle))) {
-                        collisionFound = true;
-                        break;
+                if (y > goToY) //If need to move down
+                {
+                    Rectangle tempPlayer = new Rectangle(x, y - 5, rectangle.width, rectangle.height);
+                    if(!CheckCollision(tempPlayer,doors,walls))
+                    {
+                        y -= 2;
                     }
-                }
-                //Check playercollissions against Doors
-                for (int i = 0; i < doors.size();i++) {
-                    Rectangle doorrectangle = doors.get(i).rectangle;
-
-
-                    if (tempPlayer.overlaps((doorrectangle))) {
-                        collisionFound = true;
-                        break;
+                } else           //If need to move up
+                {
+                    Rectangle tempPlayer = new Rectangle(x, y + 5, rectangle.width, rectangle.height);
+                    if(!CheckCollision(tempPlayer,doors,walls)) {
+                        y += 2;
                     }
-                }
-                if (!collisionFound) {
-                    y += 2;
                 }
             }
         }
@@ -190,5 +173,25 @@ public class Player {
                 texture.getWidth(),texture.getHeight(),1.0f,1.0f,
                 0,0,0,texture.getWidth(),texture.getHeight(),
                 false,false);
+    }
+    public boolean CheckCollision(Rectangle tempPlayer,ArrayList<Door>doors,ArrayList<Tile>walls)
+    {
+        for(int i = 0; i < walls.size();i++)
+        {
+            Rectangle wallRectangle = walls.get(i).rectangle;
+
+            if (tempPlayer.overlaps((wallRectangle))) {
+                return true;
+            }
+        }
+        //Check playercollissions against Doors
+        for (int i = 0; i < doors.size();i++) {
+            Rectangle doorRectangle = doors.get(i).rectangle;
+
+            if (tempPlayer.overlaps((doorRectangle))) {
+                return true;
+            }
+        }
+        return false;
     }
 }
