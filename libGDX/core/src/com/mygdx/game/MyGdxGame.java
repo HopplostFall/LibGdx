@@ -9,12 +9,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.Button;
-<<<<<<< HEAD
-import java.awt.Rectangle;
-=======
-import java.io.IOException;
->>>>>>> origin/master
 
+import java.io.IOException;
 
 public class MyGdxGame extends Game {
 	SpriteBatch spritebatch;
