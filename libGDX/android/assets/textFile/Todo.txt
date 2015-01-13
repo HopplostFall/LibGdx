@@ -11,3 +11,9 @@ Server:
 
 Eventuellt_
 -Fixa playerpositioning (centered?)
+
+
+
+
+
+Done:
