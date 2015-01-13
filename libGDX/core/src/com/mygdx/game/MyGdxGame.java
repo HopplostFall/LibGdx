@@ -58,7 +58,7 @@ public class MyGdxGame extends Game {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spritebatch.setProjectionMatrix(cam.combined);
         spritebatch.begin();
-        tileHandler.Draw(spritebatch);
+        tileHandler.Draw(spritebatch,player.x-(Gdx.graphics.getWidth()),player.y-(Gdx.graphics.getHeight()));
 		player.Draw(spritebatch);
         spritebatch.end();
 
