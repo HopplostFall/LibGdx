@@ -210,6 +210,13 @@ public class TileHandler {
                         }
                     }
                 }
+            }else if(temp.contains("Finished")){
+                int IDButton = Integer.parseInt(temp.split(":")[0]);
+                for (int i = 0; i < buttons.size(); i++) {
+                    if (buttons.get(i).ID == IDButton) {
+                         
+                    }
+                }
             }
             }
         }
