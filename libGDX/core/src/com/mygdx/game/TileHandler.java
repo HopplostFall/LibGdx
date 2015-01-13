@@ -34,19 +34,19 @@ public class TileHandler {
         {
             if(bytes[i] == 'w') //Wall
             {
-                textureForPlacement = new Texture("wall.jpg");
+                textureForPlacement = new Texture("wall2.jpg");
                 Tile wall = new Tile(x*100,450-(100*y),textureForPlacement);
                 walls.add(wall);
                 x++;
             }else if(bytes[i] == 'f') //Floor
             {
-                textureForPlacement = new Texture("Floor.jpg");
+                textureForPlacement = new Texture("Floor2.jpg");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
                 x++;
             }else if(bytes[i] == 'b') //Button
             {
-                textureForPlacement = new Texture("Floor.jpg");
+                textureForPlacement = new Texture("Floor2.jpg");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
                 Button button = new Button(x*100,450-(100*y),bytes[i+1]);
@@ -56,7 +56,7 @@ public class TileHandler {
 
             }else if(bytes[i] == 'd') //Door
             {
-                textureForPlacement = new Texture("Floor.jpg");
+                textureForPlacement = new Texture("Floor2.jpg");
                 Texture texture = new Texture("Door.png");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
