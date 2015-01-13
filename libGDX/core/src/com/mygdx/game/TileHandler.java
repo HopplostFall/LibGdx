@@ -80,7 +80,7 @@ public class TileHandler {
                 y++;
                 x = 0;
             }
-            int hey = 0;
+
         }
     }
 
@@ -112,43 +112,23 @@ public class TileHandler {
         return number;*/
     }
 
-    public void Draw(SpriteBatch spriteBatch, int playerPosX, int playerPosY)
+    public void Draw(SpriteBatch spriteBatch)
     {
-        int tempX =playerPosX + (Gdx.graphics.getWidth()*2);
-        int tempY =playerPosY + (Gdx.graphics.getHeight()*2);
         for(int i = 0; i < floors.size();i++)
         {
-            if(CheckToDraw(floors.get(i).x,floors.get(i).y,tempX,tempY,playerPosX,playerPosY)) {
-                floors.get(i).Draw(spriteBatch);
-            }
+            floors.get(i).Draw(spriteBatch);
         }
         for(int i = 0; i < walls.size();i++)
         {
-            if(CheckToDraw(walls.get(i).x,walls.get(i).y,tempX,tempY,playerPosX,playerPosY)) {
-                walls.get(i).Draw(spriteBatch);
-            }
+            walls.get(i).Draw(spriteBatch);
         }
         for(int i = 0; i < doors.size();i++)
         {
-            if(CheckToDraw(doors.get(i).x,doors.get(i).y,tempX,tempY,playerPosX,playerPosY)) {
-                doors.get(i).Draw(spriteBatch);
-            }
+            doors.get(i).Draw(spriteBatch);
         }
         for(int i = 0; i < buttons.size();i++)
         {
-            if(CheckToDraw(buttons.get(i).x,buttons.get(i).y,tempX,tempY,playerPosX,playerPosY)) {
-                buttons.get(i).Draw(spriteBatch);
-            }
+            buttons.get(i).Draw(spriteBatch);
         }
-    }
-    public boolean CheckToDraw(int posX,int posY,int fromX,int fromY, int toX, int toY)
-    {
-        if(posX<fromX  && posX > toX) {
-            if(posY < fromY && posY > toY) {
-                return true;
-
-            }
-        }
-        return false;
     }
 }
