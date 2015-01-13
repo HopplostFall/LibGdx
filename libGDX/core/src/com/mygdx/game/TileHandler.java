@@ -21,6 +21,7 @@ public class TileHandler {
     ArrayList<Door> doors = new ArrayList();
     Thread newPlayersThread;
     Connect connect;
+    Player player;
 
 
     public TileHandler(Connect connect)
@@ -114,8 +115,10 @@ public class TileHandler {
         return result;
     }
 
-    public void Draw(SpriteBatch spriteBatch,int playerPosX,int playerPosY)
+    public void Draw(SpriteBatch spriteBatch)
     {
+        int playerPosX = player.x - Gdx.graphics.getWidth();
+        int playerPosY = player.y - Gdx.graphics.getHeight();
         int tempX =playerPosX + (Gdx.graphics.getWidth()*2);
         int tempY =playerPosY + (Gdx.graphics.getHeight()*2);
         for(int i = 0; i < floors.size();i++)
@@ -142,6 +145,7 @@ public class TileHandler {
                 buttons.get(i).Draw(spriteBatch);
             }
         }
+        player.Draw(spriteBatch);
     }
     public boolean CheckToDraw(int posX,int posY,int fromX,int fromY, int toX, int toY)
     {
@@ -163,7 +167,12 @@ public class TileHandler {
             String temp = connect.ListenForMessage();
             if(temp.contains("Welcome to this Server, Your ID is: "))
             {
-                MyGdxGame.myID =  Integer.parseInt(temp.split(": ")[1]);
+                MyGdxGame.myID =  Integer.parseInt(temp.split(": ")[1].split(",")[0]);
+                int x = Integer.parseInt(temp.split(":")[2].split(",")[0]);
+                int y = Integer.parseInt(temp.split(":")[2].split(",")[1]);
+                Texture img = new Texture("character.png");
+
+                player = new Player(x,y,img);
             }
             else if(temp.contains("Pressed"))
             {
@@ -205,4 +214,9 @@ public class TileHandler {
             }
         }
     }
+    public void updatePlayer()
+    {
+        player.Update(walls,doors,buttons);
+    }
+
 }

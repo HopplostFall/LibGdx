@@ -36,10 +36,12 @@ public class Door {
         public void OpenDoor()
         {
             this.rectangle = new Rectangle(x,y,0,0);
+            srcWidth = 0;
         }
         public void CloseDoor()
         {
             this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
+            srcWidth =  texture.getWidth();
         }
 
 

@@ -14,8 +14,6 @@ import java.io.IOException;
 
 public class MyGdxGame extends Game {
 	SpriteBatch spritebatch;
-	Texture img;
-    Player player;
     Batch batch;
     Button button;
     TileHandler tileHandler;
@@ -39,8 +37,6 @@ public class MyGdxGame extends Game {
         cam.position.set(0, 0, 0);
         cam.update();
 
-		img = new Texture("character.png");
-        player = new Player(200,200,img);
         tileHandler = new TileHandler(connect);
 
 
@@ -53,8 +49,7 @@ public class MyGdxGame extends Game {
     }
     public void Update()
     {
-
-        player.Update(tileHandler.walls,tileHandler.doors,tileHandler.buttons);
+        tileHandler.updatePlayer();
         CamUpdate();
     }
 	@Override
@@ -63,17 +58,18 @@ public class MyGdxGame extends Game {
 
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        spritebatch.setProjectionMatrix(cam.combined);
-        spritebatch.begin();
-        tileHandler.Draw(spritebatch,player.x - Gdx.graphics.getWidth(),player.y - Gdx.graphics.getHeight());
-		player.Draw(spritebatch);
-        spritebatch.end();
+        if(tileHandler.player != null) {
+            spritebatch.setProjectionMatrix(cam.combined);
+            spritebatch.begin();
+            tileHandler.Draw(spritebatch);
+            spritebatch.end();
+        }
 
 	}
     public void CamUpdate()
     {
         cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(player.x, player.y, 0);
+        cam.position.set(tileHandler.player.x, tileHandler.player.y, 0);
         cam.update();
     }
 
