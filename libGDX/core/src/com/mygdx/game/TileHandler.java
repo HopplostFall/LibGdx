@@ -50,7 +50,24 @@ public class TileHandler {
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
                 int btnNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
-                Button button = new Button(x*100,450-(100*y),btnNumber);
+
+                ArrayList<Integer> linkedDoors = new ArrayList<Integer>();
+                for (int j = i+3; j < bytes.length; j++)
+                {
+                    if (bytes[j] == 'd'
+                            ||bytes[j] == 'w'
+                            ||bytes[j] == 'f'
+                            ||bytes[j] == 'b')
+                    {
+                        break;
+                    }
+                    else {
+                        linkedDoors.add(bytesToInt(bytes, j));
+                        j++;
+                    }
+                }
+
+                Button button = new Button(x*100,450-(100*y),btnNumber, linkedDoors);
                 buttons.add(button);
                 x++;
 
