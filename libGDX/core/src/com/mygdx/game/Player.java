@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -139,12 +140,20 @@ public class Player {
         //Handle input from player
         if(Gdx.input.isTouched())
         {
-            int xInput = Gdx.input.getX();
+            float tmpX = Gdx.input.getX();
+            float tmpXX = Gdx.graphics.getWidth();
+            float tempInX = (tmpX / tmpXX);
+
+            float tmpY = Gdx.input.getY();
+            float tmpYY = Gdx.graphics.getHeight();
+            float tempInY = (tmpY / tmpYY);
+
+            int xInput = (int)(tempInX * MyGdxGame.WidthToUse);
             int diffX = xInput - x;
-            int yInput = Gdx.input.getY();
+            int yInput = (int)(tempInY * MyGdxGame.HeightToUse);
             int diffY = yInput - y;
-            goToX = (xInput+ x)-(Gdx.graphics.getWidth()/2);
-            goToY = (((yInput - Gdx.graphics.getHeight()) * -1)+y) - (Gdx.graphics.getHeight()/2);
+            goToX = (xInput+ x)-(MyGdxGame.WidthToUse/2);
+            goToY = (((yInput - MyGdxGame.HeightToUse) * -1)+y) - (MyGdxGame.HeightToUse/2);
             goToX = goToX/2;
             goToX = goToX*2;
             goToY = goToY/2;

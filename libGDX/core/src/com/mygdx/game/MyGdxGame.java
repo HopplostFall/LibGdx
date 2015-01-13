@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.Button;
-import java.io.IOException;
 
+import java.io.IOException;
 
 public class MyGdxGame extends Game {
 	SpriteBatch spritebatch;
@@ -21,7 +21,9 @@ public class MyGdxGame extends Game {
     Connect connect;
     public static int myID;
 
-
+    public static final int HeightToUse = 480;
+    public static final int WidthToUse = 640;
+    public static final float AspectRatio = (float)WidthToUse/(float)HeightToUse;
 
 	@Override
 	public void create () {
@@ -32,31 +34,28 @@ public class MyGdxGame extends Game {
             e.printStackTrace();
         }
         spritebatch = new SpriteBatch();
-        cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam = new OrthographicCamera(WidthToUse, HeightToUse);
+        cam.setToOrtho(false, WidthToUse, HeightToUse);
         cam.position.set(0, 0, 0);
         cam.update();
 
         tileHandler = new TileHandler(connect);
 
-
-
-
-
-
-
-
     }
     public void Update()
     {
+<<<<<<< HEAD
         tileHandler.updatePlayer();
+=======
+        player.Update(tileHandler.walls,tileHandler.doors,tileHandler.buttons);
+>>>>>>> origin/master
         CamUpdate();
     }
 	@Override
 	public void render () {
         Update();
-
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.graphics.setDisplayMode(WidthToUse, HeightToUse, true);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(tileHandler.player != null) {
             spritebatch.setProjectionMatrix(cam.combined);
@@ -68,9 +67,15 @@ public class MyGdxGame extends Game {
 	}
     public void CamUpdate()
     {
+<<<<<<< HEAD
         cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.position.set(tileHandler.player.x, tileHandler.player.y, 0);
+=======
+        cam.setToOrtho(false, WidthToUse, HeightToUse);
+        cam.position.set(player.x, player.y, 0);
+>>>>>>> origin/master
         cam.update();
     }
 
 }
+
