@@ -47,18 +47,18 @@ public class TileHandler {
             }else if(bytes[i] == 'b') //Button
             {
                 textureForPlacement = new Texture("Floor.jpg");
-                Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
-                floors.add(floor);
-                int btnNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
+                        Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
+                        floors.add(floor);
+                        int btnNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
 
-                ArrayList<Integer> linkedDoors = new ArrayList<Integer>();
-                for (int j = i+3; j < bytes.length; j++)
-                {
-                    if (bytes[j] == 'd'
-                            ||bytes[j] == 'w'
-                            ||bytes[j] == 'f'
-                            ||bytes[j] == 'b')
-                    {
+                        ArrayList<Integer> linkedDoors = new ArrayList<Integer>();
+                        for (int j = i+3; j < bytes.length; j++)
+                        {
+                            if (bytes[j] == 'd'
+                                    ||bytes[j] == 'w'
+                                    ||bytes[j] == 'f'
+                                    ||bytes[j] == 'b')
+                            {
                         break;
                     }
                     else {
