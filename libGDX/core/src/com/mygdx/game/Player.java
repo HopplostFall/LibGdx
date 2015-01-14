@@ -18,13 +18,13 @@ public class Player {
     Rectangle rectangle;
 
 
-    public Player(int x, int y, Texture texture)
+    public Player(int x, int y)
     {
         this.x = x;
         this.y = y;
         goToY = y;
         goToX = x;
-        this.texture = texture;
+        this.texture = new Texture("character.png");
         this.rectangle = new Rectangle(x,y,texture.getWidth(),texture.getHeight());
 
     }

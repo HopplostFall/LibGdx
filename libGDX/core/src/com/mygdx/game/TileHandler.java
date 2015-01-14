@@ -22,6 +22,9 @@ public class TileHandler {
     Thread newPlayersThread;
     Connect connect;
     Player player;
+    int finishButtons = 0;
+    int playersFinished = 0;
+
 
 
     public TileHandler(Connect connect)
@@ -54,9 +57,10 @@ public class TileHandler {
             }else if(bytes[i] == 'b') //Button
             {
                 textureForPlacement = new Texture("Floor.jpg");
-                        Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
-                        floors.add(floor);
-                        int btnNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
+                Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
+                floors.add(floor);
+                int btnNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
+                boolean finishButton = false;
 
                         ArrayList<Integer> linkedDoors = new ArrayList<Integer>();
                         for (int j = i+3; j < bytes.length; j++)
@@ -64,9 +68,16 @@ public class TileHandler {
                             if (bytes[j] == 'd'
                                     ||bytes[j] == 'w'
                                     ||bytes[j] == 'f'
-                                    ||bytes[j] == 'b')
+                                    ||bytes[j] == 'b'||bytes[j]=='v')
+
                             {
-                        break;
+                        if(bytes[j]=='v') {
+                            finishButton = true;
+                            finishButtons++;
+                            break;
+                        }else {
+                            break;
+                        }
                     }
                     else {
                         linkedDoors.add(bytesToInt(bytes, j));
@@ -74,7 +85,7 @@ public class TileHandler {
                     }
                 }
 
-                Button button = new Button(x*100,450-(100*y),btnNumber, linkedDoors,connect);
+                Button button = new Button(x*100,450-(100*y),btnNumber, linkedDoors,connect,finishButton);
                 buttons.add(button);
                 x++;
 
@@ -164,15 +175,14 @@ public class TileHandler {
         {
             while(true)
             {
-            String temp = connect.ListenForMessage();
+                String temp = connect.ListenForMessage();
             if(temp.contains("Welcome to this Server, Your ID is: "))
             {
                 MyGdxGame.myID =  Integer.parseInt(temp.split(": ")[1].split(",")[0]);
                 int x = Integer.parseInt(temp.split(":")[2].split(",")[0]);
                 int y = Integer.parseInt(temp.split(":")[2].split(",")[1]);
-                Texture img = new Texture("character.png");
 
-                player = new Player(x,y,img);
+                player = new Player(x,y);
             }
             else if(temp.contains("Pressed"))
             {
@@ -214,7 +224,16 @@ public class TileHandler {
                 int IDButton = Integer.parseInt(temp.split(":")[0]);
                 for (int i = 0; i < buttons.size(); i++) {
                     if (buttons.get(i).ID == IDButton) {
-                         
+                         buttons.get(i).otherPlayer = true;
+                         playersFinished++;
+                        }
+                     }
+                }else if(temp.contains("UnActivate")){
+                int IDButton = Integer.parseInt(temp.split(":")[0]);
+                for (int i = 0; i < buttons.size(); i++) {
+                    if (buttons.get(i).ID == IDButton) {
+                        buttons.get(i).otherPlayer = false;
+                        playersFinished--;
                     }
                 }
             }
@@ -224,6 +243,11 @@ public class TileHandler {
     public void updatePlayer()
     {
         player.Update(walls,doors,buttons);
+        if(playersFinished == finishButtons){
+
+        }
+
+
     }
 
 }

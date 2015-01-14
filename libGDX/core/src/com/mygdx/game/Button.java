@@ -19,8 +19,10 @@ public class Button {
     int ID;
     ArrayList<Integer> linkList;
     Connect connect;
+    boolean finishButton = false;
+    boolean otherPlayer = false;
 
-    public Button(int x,int y, int ID, ArrayList<Integer> linkedDoors,Connect connect)
+    public Button(int x,int y, int ID, ArrayList<Integer> linkedDoors,Connect connect,boolean finishButton)
     {
         this.textureNotActivated =  new Texture("ButtonNotActivated.png");
         this.textureActivated =  new Texture("ButtonActivated.png");
@@ -30,10 +32,11 @@ public class Button {
         this.linkList = linkedDoors;
         this.rectangle = new Rectangle(x,y,textureActivated.getWidth(),textureActivated.getHeight());
         this.connect = connect;
+        this.finishButton = finishButton;
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        if(activated) {
+        if(activated || otherPlayer) {
             spriteBatch.draw(textureActivated, x, y);
         }else
         {
@@ -44,6 +47,9 @@ public class Button {
     {
         if(!activated) {
             connect.WriteToServer(ID + ",:Pressed");
+            if(finishButton) {
+                connect.WriteToServer(ID + ",:Finished");
+            }
         }
         activated = true;
 
@@ -52,6 +58,10 @@ public class Button {
     {
         if(activated) {
             connect.WriteToServer(ID + ",:Released");
+            if(finishButton) {
+                connect.WriteToServer(ID + ",:UnActivate");
+            }
+
         }
         activated = false;
     }
