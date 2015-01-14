@@ -22,7 +22,8 @@ public class Connect {
 
 
     public Connect() throws IOException {
-        serverAddr = InetAddress.getByName("10.1.19.132");
+        //serverAddr = InetAddress.getByName("10.1.19.132");
+        serverAddr = InetAddress.getByName("10.0.1.30");
         clientSocket = new Socket(serverAddr, 3540);
         outToServer = new DataOutputStream(clientSocket.getOutputStream());
         inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

@@ -44,19 +44,19 @@ public class TileHandler {
         {
             if(bytes[i] == 'w') //Wall
             {
-                textureForPlacement = new Texture("wall.jpg");
+                textureForPlacement = new Texture("wall.png");
                 Tile wall = new Tile(x*100,450-(100*y),textureForPlacement);
                 walls.add(wall);
                 x++;
             }else if(bytes[i] == 'f') //Floor
             {
-                textureForPlacement = new Texture("Floor.jpg");
+                textureForPlacement = new Texture("Floor.png");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
                 x++;
             }else if(bytes[i] == 'b') //Button
             {
-                textureForPlacement = new Texture("Floor.jpg");
+                textureForPlacement = new Texture("Floor.png");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);
                 int btnNumber = bytesToInt(bytes, i+1);   //Send array + startpos for 2-byte int
@@ -92,7 +92,7 @@ public class TileHandler {
 
             }else if(bytes[i] == 'd') //Door
             {
-                textureForPlacement = new Texture("Floor.jpg");
+                textureForPlacement = new Texture("Floor.png");
                 Texture texture = new Texture("Door.png");
                 Tile floor = new Tile(x*100,450-(100*y),textureForPlacement);
                 floors.add(floor);

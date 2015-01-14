@@ -197,10 +197,11 @@ public class Player {
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.draw(texture,x,y,
+        Texture playerTxt = new Texture("character.png");
+        spriteBatch.draw(playerTxt,x,y,
                 2, 2,
-                texture.getWidth(),texture.getHeight(),1.0f,1.0f,
-                0,0,0,texture.getWidth(),texture.getHeight(),
+                playerTxt.getWidth(),playerTxt.getHeight(),1.0f,1.0f,
+                0,0,0,playerTxt.getWidth(),playerTxt.getHeight(),
                 false,false);
     }
     public boolean CheckCollision(Rectangle tempPlayer,ArrayList<Door>doors,ArrayList<Tile>walls)

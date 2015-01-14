@@ -51,7 +51,8 @@ public class MyGdxGame extends Game {
             if (tileHandler.player != null) {
                 Update();
                 Gdx.graphics.setDisplayMode(WidthToUse, HeightToUse, true);
-                Gdx.gl.glClearColor(1, 1, 1, 1);
+                //Gdx.gl.glClearColor(1, 1, 1, 1);
+                Gdx.gl.glClearColor(0.37f, 0.76f, 0.28f, 1);
                 Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
                 spritebatch.setProjectionMatrix(cam.combined);
                 spritebatch.begin();
