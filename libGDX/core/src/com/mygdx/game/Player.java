@@ -105,12 +105,22 @@ public class Player {
 
                 if(x > goToX)  //If need to move left
                 {
+                    int tempX = x-goToX;
+                    if(tempX <5)
+                    {
+                        x = goToX;
+                    }
                     Rectangle tempPlayer = new Rectangle(x -8 ,y,rectangle.width,rectangle.height);
                     if(!CheckCollision(tempPlayer,doors,walls)){
                         x-=5;
                     }
                 }else           //If need to move right
                 {
+                    int tempX = goToX-x;
+                    if(tempX <5)
+                    {
+                        x = goToX;
+                    }
                     Rectangle tempPlayer = new Rectangle(x +8 ,y,rectangle.width,rectangle.height);
                     if(!CheckCollision(tempPlayer,doors,walls))
                     {
@@ -122,6 +132,11 @@ public class Player {
             {
                 if (y > goToY) //If need to move down
                 {
+                    int tempY = y-goToY;
+                    if(tempY <5)
+                    {
+                        y = goToY;
+                    }
                     Rectangle tempPlayer = new Rectangle(x, y - 8, rectangle.width, rectangle.height);
                     if(!CheckCollision(tempPlayer,doors,walls))
                     {
@@ -129,6 +144,11 @@ public class Player {
                     }
                 } else           //If need to move up
                 {
+                    int tempY = goToY-y;
+                    if(tempY <5)
+                    {
+                        y = goToY;
+                    }
                     Rectangle tempPlayer = new Rectangle(x, y + 8, rectangle.width, rectangle.height);
                     if(!CheckCollision(tempPlayer,doors,walls)) {
                         y += 5;

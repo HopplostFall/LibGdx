@@ -19,6 +19,7 @@ public class MyGdxGame extends Game {
     TileHandler tileHandler;
     OrthographicCamera cam;
     Connect connect;
+    ReconnectButton rc;
     public static int myID;
 
     public static final int HeightToUse = 480;
@@ -27,19 +28,14 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create () {
-        try {
-            connect = new Connect();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Connect();
         spritebatch = new SpriteBatch();
         cam = new OrthographicCamera(WidthToUse, HeightToUse);
         cam.setToOrtho(false, WidthToUse, HeightToUse);
         cam.position.set(0, 0, 0);
         cam.update();
+        rc = new ReconnectButton();
 
-        tileHandler = new TileHandler(connect);
 
     }
     public void Update()
@@ -51,14 +47,23 @@ public class MyGdxGame extends Game {
     }
 	@Override
 	public void render () {
-        if(tileHandler.player != null) {
-            Update();
-        Gdx.graphics.setDisplayMode(WidthToUse, HeightToUse, true);
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-            spritebatch.setProjectionMatrix(cam.combined);
+        if(tileHandler != null && connect.clientSocket.isConnected()) {
+            if (tileHandler.player != null) {
+                Update();
+                Gdx.graphics.setDisplayMode(WidthToUse, HeightToUse, true);
+                Gdx.gl.glClearColor(1, 1, 1, 1);
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+                spritebatch.setProjectionMatrix(cam.combined);
+                spritebatch.begin();
+                tileHandler.Draw(spritebatch);
+                spritebatch.end();
+            }
+        }else {
             spritebatch.begin();
-            tileHandler.Draw(spritebatch);
+            if (rc.Reconnect()) {
+                Connect();
+            }
+            rc.Draw(spritebatch);
             spritebatch.end();
         }
 
@@ -69,6 +74,13 @@ public class MyGdxGame extends Game {
         cam.position.set(tileHandler.player.x, tileHandler.player.y, 0);
         cam.update();
     }
-
+    public void Connect(){
+        try {
+            connect = new Connect();
+            tileHandler = new TileHandler(connect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
