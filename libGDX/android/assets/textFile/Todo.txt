@@ -1,10 +1,7 @@
 
 -Fixa playerspawns
--Länka knappar med dörrar
--Koppla knapp-tryck servern & traffik till/från server
--Fixa scaling (samma vy för alla devices, inte dpi-baserad)
 -Fixa lampa vid slut
--Fixa win-condition
+
 
 Server:
 -Block av fler än 2 spelare som ansluter till servern.
@@ -17,3 +14,7 @@ Eventuellt_
 
 
 Done:
+-Länka knappar med dörrar
+-Koppla knapp-tryck servern & traffik till/från server
+-Fixa scaling (samma vy för alla devices, inte dpi-baserad)
+-Fixa win-condition
