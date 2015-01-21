@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <color name="myActionbarColor">#8A2BE2</color>
+    <color name="myBackgroundColor">#CDB5CD</color>
+    <color name="myActionbarTextColor">#000080</color>
+
+    <style name="MyTheme"
+        parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowBackground">@color/myBackgroundColor</item>
+        <item name="android:colorBackground">@color/myBackgroundColor</item>
+
+        <item name="android:actionBarStyle">@style/MyActionbar</item>
+        <item name="actionBarStyle">@style/MyActionbar</item>
+
+        <item name="android:textSize">15sp</item>
+        <item name="android:typeface">serif</item>
+
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="MyActionbar"
+        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">#8A2BE2</item>
+        <item name="android:titleTextStyle">@style/MyActionbarTitleText</item>
+    </style>
+
+    <style name="MyActionbarTitleText"
+        parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/myActionbarTextColor</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:typeface">sans</item>
+
+    </style>
+
+</resources>

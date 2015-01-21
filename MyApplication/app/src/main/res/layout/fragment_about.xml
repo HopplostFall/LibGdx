@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="se.malmberg.ns.assignmentonechat.AboutFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView android:layout_width="match_parent" android:layout_height="38dp"
+        android:text="@string/action_about"
+        android:id="@+id/AboutTxt"
+        android:gravity="center_horizontal"
+        android:textAlignment="gravity" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:text="@string/about_filler"
+        android:id="@+id/AboutFiller"
+        android:gravity="center_horizontal"
+        android:textAlignment="gravity"
+        android:layout_below="@+id/AboutTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

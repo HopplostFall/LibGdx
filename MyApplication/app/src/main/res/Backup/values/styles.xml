@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="MyTheme"
+        parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionbar</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MyActionbar"
+        parent="@android:style/Widget.AppCompat.ActionBar">
+        <item name="android:background">@drawable/actionbar_background</item>
+
+        <!-- Support library compatibility -->
+        <item name="titleTextStyle">@style/TitleTextStyle</item>
+        <item name="background">@drawable/actionbar_background</item>
+    </style>
+
+</resources>
